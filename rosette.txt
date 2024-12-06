@@ -1,0 +1,50 @@
+ man in LINUX for manual !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+module load GCCcore/12.2.0 libGLU/9.0.2 Mesa/22.2.4
+
+ssh ....
+sbatch launchJupyterLab.sh
+squeue -j 
+Do not forget to log in using the dynamic forward 5000 : 
+ssh ygg_jup 
+or
+ssh henrymi2@login1.yggdrasil.hpc.unige.ch -D 5000
+
+scp * henrymi2@login1.yggdrasil.hpc.unige.ch:[no need to mention home]
+
+salloc -n1 -c4 --partition=public-interactive-cpu --time=3:00:00 --x11
+salloc -n1 -c1 --partition=public-interactive-cpu --time=1:00:00
+salloc -n1 -c30 --partition=shared-cpu --time=12:00:00
+salloc -n1 -c30 --mem-per-cpu=10000 --partition=shared-cpu --time=11:00:00
+
+virtualenv []
+source (.) seismov1_env/bin/activate
+deactivate
+seismov1_env/bin/pip install []
+
+Loading  virtualenv in Jupyter
+./seismov1_env/bin/pip install ipykernel
+python -m ipykernel install --user --name=seismov1_env
+
+List : 
+sinfo -s (as simplified)
+sacct -u henrymi2 (useful statistics)
+sacct -j [] --format=JobID,ReqMem,MaxRSS,TotalCPU (t how much memory we requested (ReqMem), 
+how much we used, MaxRSS
+ total CPU time used by the job TotalCPU
+squeue -l -u henrymi2 (long version)
+
+
+ml GCC/11.3.0 MariaDB/10.9.3 Anaconda3
+conda activate msnoise_env
+mysql -u henrymi2 -h 10.20.74.110 -p
+
+msnoise db init
+10.20.74.110 (Wifi UNIGE)
+10.195.55.208 (Ethernet)
+henrymi2
+msnoise_cluster_
+
+squeue -u henrymi2 --start
+
+spart (display info about partition)

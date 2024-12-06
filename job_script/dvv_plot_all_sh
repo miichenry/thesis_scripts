@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --output=%x_%j.out
+#SBATCH --partition=public-short-cpu
+#SBATCH --time=1:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=2
+
+ml GCC/11.3.0  OpenMPI/4.1.4 intel-compilers/2022.1.0  impi/2021.6.0 SciPy-bundle/2022.05
+. ~/msnoise_venv/bin/activate
+cd ${SLURM_SUBMIT_DIR}
+echo "${SLURM_SUBMIT_DIR}"
+echo "******["`date +%Y-%m-%d_%H:%M:%S`"]******"
+msnoise plot dvv -p CH_BALST_CH_BOURR -c ZZ -f 1 -o dvv_BALST_BOURR_f1.png
+msnoise plot dvv -p CH_BALST_CH_MTI02 -c ZZ -f 1 -o dvv_BALST_MTI02_f1.png
+msnoise plot dvv -p CH_BALST_CH_SAIRA -c ZZ -f 1 -o dvv_BALST_SAIRA_f1.png
+msnoise plot dvv -p CH_BOURR_CH_MTI02 -c ZZ -f 1 -o dvv_BOURR_MTI02_f1.png
+msnoise plot dvv -p CH_BOURR_CH_SAIRA -c ZZ -f 1 -o dvv_BOURR_SAIRA_f1.png
+msnoise plot dvv -p CH_MTI02_CH_SAIRA -c ZZ -f 1 -o dvv_MTI02_SAIRA_f1.png
+
+msnoise plot dvv -p CH_BALST_CH_BOURR -c ZZ -f 2 -o dvv_BALST_BOURR_f2.png
+msnoise plot dvv -p CH_BALST_CH_MTI02 -c ZZ -f 2 -o dvv_BALST_MTI02_f2.png
+msnoise plot dvv -p CH_BALST_CH_SAIRA -c ZZ -f 2 -o dvv_BALST_SAIRA_f2.png
+msnoise plot dvv -p CH_BOURR_CH_MTI02 -c ZZ -f 2 -o dvv_BOURR_MTI02_f2.png
+msnoise plot dvv -p CH_BOURR_CH_SAIRA -c ZZ -f 2 -o dvv_BOURR_SAIRA_f2.png
+msnoise plot dvv -p CH_MTI02_CH_SAIRA -c ZZ -f 2 -o dvv_MTI02_SAIRA_f2.png
+
+msnoise plot dvv -p CH_BALST_CH_BOURR -c ZZ -f 3 -o dvv_BALST_BOURR_f3.png
+msnoise plot dvv -p CH_BALST_CH_MTI02 -c ZZ -f 3 -o dvv_BALST_MTI02_f3.png
+msnoise plot dvv -p CH_BALST_CH_SAIRA -c ZZ -f 3 -o dvv_BALST_SAIRA_f3.png
+msnoise plot dvv -p CH_BOURR_CH_MTI02 -c ZZ -f 3 -o dvv_BOURR_MTI02_f3.png
+msnoise plot dvv -p CH_BOURR_CH_SAIRA -c ZZ -f 3 -o dvv_BOURR_SAIRA_f3.png
+msnoise plot dvv -p CH_MTI02_CH_SAIRA -c ZZ -f 3 -o dvv_MTI02_SAIRA_f3.png
+echo "******["`date +%Y-%m-%d_%H:%M:%S`"]******"
